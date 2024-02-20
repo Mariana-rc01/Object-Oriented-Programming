@@ -1,13 +1,7 @@
-import java.time.LocalDate;
-
-
 public class Ficha1 {
     /* Exercício 1 */
     public double celsiusParaFarenheit(double graus) {
-        
-        double fh = graus*9/5 + 32;
-
-        return fh;
+        return graus*9/5 + 32;
     }
 
     /* Exercício 2 */

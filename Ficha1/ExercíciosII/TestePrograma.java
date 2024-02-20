@@ -2,12 +2,11 @@
  * sala 2.12 DI
 */
 
-// Exercícios I em casa 
 // a main só serve para interargir com o utilizador
 import java.util.Scanner;
 
 public class TestePrograma {
-    public static void main(String[] args) throws Exception { //só usar na main
+    public static void main(String[] args) { //só usar na main
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduza o número da pergunta: ");
         int pergunta = sc.nextInt();
@@ -72,7 +71,7 @@ public class TestePrograma {
         
                 int menor = Math.min(a5,b5);
                 int maior = Math.max(a5,b5);
-                double media = (a5 + b5) / 2;
+                double media = (a5 + b5) / 2.0;
         
                 System.out.println("O menor valor é " + menor + " a media é " + media + " e o maior valor é " + maior);
                 break;
