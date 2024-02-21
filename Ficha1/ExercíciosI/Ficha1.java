@@ -1,3 +1,7 @@
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Ficha1 {
     /* Exercício 1 */
     public String calculaSemana(int day, int month, int year) {
@@ -62,19 +66,29 @@ public class Ficha1 {
     }
 
     /* Exercício 2 */
-    public int maximoNumeros(int a, int b) {
-        return Math.max(a,b);
+    public String somaDatas(String data1, String data2) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime d1, d2;
+        try {
+            d1 = LocalDateTime.parse(data1, formatter);
+            d2 = LocalDateTime.parse(data2, formatter);
+        } catch (Exception e) {
+            return "Formato de data inválido. Use o formato yyyy-MM-dd HH:mm:ss.";
+        }
+
+        Duration duration = Duration.between(d1,d2);
+
+        long dias = duration.toDays();
+        long horas = duration.toHours() % 24;
+        long minutos = duration.toMinutes() % 60;
+        long segundos = duration.getSeconds() % 60;
+
+        return String.format("%02dD %02dH %02dM %02dS", dias, horas, minutos,segundos);
     }
 
-    /* Exercício 3 */
-    public String criaDescricaoConta(String nome, double saldo) {
-        return "O saldo de " + nome + " é " + saldo;
-    }
+    /* Exercício 3 feito na main*/
 
-    /* Exercício 4 */
-    public double eurosParaLibras(double valor, double taxaConversao) {
-        return valor*taxaConversao;
-    }
+    /* Exercício 4 feito na main*/
 
     /* Exercício 5 feito na main*/
 
@@ -89,14 +103,18 @@ public class Ficha1 {
     }
 
     /* Exercício 7 */
-    public long tempoGasto(){
-        long f;
+    public long calculaIdadeHoras(String dia){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime d, local;
+        try {
+            d = LocalDateTime.parse(dia, formatter);
+        } catch (Exception e) {
+            return -1;
+        }
 
-        long before = System.currentTimeMillis();
-        long after = System.currentTimeMillis();
-        
-        f = after - before;
+        local = LocalDateTime.now();
+        Duration duracao = Duration.between(d,local);
 
-        return f;
+        return duracao.toHours();
     }
 }

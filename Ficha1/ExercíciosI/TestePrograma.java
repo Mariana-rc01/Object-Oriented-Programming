@@ -3,7 +3,9 @@
 */
 
 // a main só serve para interargir com o utilizador
+import java.time.LocalDateTime;
 import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
 
 public class TestePrograma {
     public static void main(String[] args) { //só usar na main
@@ -14,7 +16,7 @@ public class TestePrograma {
         Ficha1 f1 = new Ficha1();
 
         switch (pergunta){
-            case 1: { // done
+            case 1: {
              
                 System.out.println("Introduza um dia (1-31): ");
                 int day = sc.nextInt();
@@ -35,27 +37,33 @@ public class TestePrograma {
             }
 
             case 2: {
-                System.out.println("Introduza uma data: ");
-                int a = sc.nextInt();
+                String a = "2024-02-21 12:00:00";
+                String b = "2024-02-23 08:30:45";
         
-                System.out.println("Introduza outra data: ");
-                int b = sc.nextInt();
+                String soma = f1.somaDatas(a,b);
         
-                int max = f1.maximoNumeros(a, b);
-        
-                System.out.println("A diferença entre as duas datas que inseriu é ");
+                System.out.println(soma);
                 break;
             }
 
             case 3: {
-                System.out.println("Introduza um nome: ");
-                String nome = sc.next();
-        
-                System.out.println("Introduza um saldo: ");
-                double saldo = sc.nextDouble();
+                System.out.println("Quantas classificações pretende introduzir? ");
+                int n = sc.nextInt();
+                int f = 0, f2 = 0, f3 = 0, f4 = 0;
 
-                String descricao = f1.criaDescricaoConta(nome, saldo);
-                System.out.println("Descrição "+descricao);
+                for (int i = n; i != 0; i--) {
+                    System.out.println("Introduza uma nota: ");
+                    double nota = sc.nextDouble();
+                    if (nota < 5.0 && nota > 0.0) f++;
+                    else if (nota >= 5.0 && nota < 10.0) f2++;
+                    else if (nota >= 10.0 && nota < 15.0) f3++;
+                    else if (nota >=15.0 && nota <= 20.0) f4++;
+                }
+
+                System.out.println("No intervalo [0,5[ houveram "+f+" notas.");
+                System.out.println("No intervalo [5,10[ houveram "+f2+" notas.");
+                System.out.println("No intervalo [10,15[ houveram "+f3+" notas.");
+                System.out.println("No intervalo [15,20] houveram "+f4+" notas.");
                 break;
             }
 
@@ -64,24 +72,33 @@ public class TestePrograma {
                 int n = sc.nextInt();
                 int maior = 0;
                 int dias = 0;
-                int media = 0;
+                double media = 0;
+                int anterior = 0;
+                int antT = 0;
 
                 while (n != 0) {
                     System.out.println("Introduza uma temperatura: ");
                     int t = sc.nextInt();
 
+                    media += t;
+                    if (Math.abs(t - antT) > Math.abs(maior)) {
+                        maior = t - antT;
+                        anterior = dias;
+                    }
+                    antT = t;
                     n--;
+                    dias++;
                 }
-        
-                System.out.println("Introduza uma taxaConversao: ");
-                double taxa = sc.nextDouble();
 
-                double libras = f1.eurosParaLibras(valor, taxa);
-                System.out.println("O valor em libras é "+libras);
+                media = media/dias;
+
+                System.out.println("A média das "+n+" temperaturas foi de "+media+ " graus");
+                if (maior > 0) System.out.println("A maior variação registou-se entre os dias " + anterior + " e " + (anterior + 1) + " tendo a temperatura subido " + maior + " graus");
+                else System.out.println("A maior variação registou-se entre os dias " + anterior + " e " + (anterior + 1) + " tendo a temperatura descido " + maior + " graus");
                 break;
             }
 
-            case 5: { // done
+            case 5: {
                 double base = 1.0;
                 double altura = 0.0;
 
@@ -104,7 +121,7 @@ public class TestePrograma {
                 break;
             }
 
-            case 6: { // Done
+            case 6: {
                 System.out.println("Introduza um número: ");
                 int n = sc.nextInt();
 
@@ -114,8 +131,13 @@ public class TestePrograma {
             }
 
             case 7: {
-                long time = f1.tempoGasto();
-                System.out.println("O sistema demorou "+time+" milissegundos a executar o fatorial de 5000.");
+                String n = "2001-10-01 00:00:00";
+
+                long time = f1.calculaIdadeHoras(n);
+                LocalDateTime agora = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+                String agoraF = agora.format(formatter);
+                System.out.println("A sua idade atual em horas é "+time+". E foi calculada no dia "+agoraF+".");
                 break;
             }
             default: {
