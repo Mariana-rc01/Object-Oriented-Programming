@@ -151,8 +151,155 @@ public class Ficha2 {
 
     /* Exercício 5*/
 
+    // Exercício 5b)
+    public int somaNotasUC(int[][] notasTurma, int UC){
+        int soma = 0;
+        for (int i = 0; i < notasTurma[0].length; i++){
+            soma += notasTurma[i][UC];
+        }
+        return soma;
+    }
 
+    // Exercício 5c)
+    public int mediaAluno(int[][] notasTurma, int aluno){
+        int soma = 0;
+        for (int i = 0; i < notasTurma.length; i++){
+            soma += notasTurma[aluno][i];
+        }
+        soma /= notasTurma.length;
+        return soma;
+    }
 
+    // Exercício 5d)
+    public int mediaNotasUC(int[][] notasTurma, int UC){
+        return (somaNotasUC(notasTurma,UC) / notasTurma[0].length);
+    }
+
+    // Exercício 5e)
+    public int notaMaisAlta(int[][] notasTurma){
+        int maior = notasTurma[0][0];
+        for (int i = 0; i < notasTurma.length; i++){
+            for (int j = 0; j < notasTurma[0].length; j++){
+                if (notasTurma[i][j] > maior) maior = notasTurma[i][j];
+            }
+        }
+        return maior;
+    }
+
+    // Exercício 5f)
+    public int notaMaisBaixa(int[][] notasTurma){
+        int menor = notasTurma[0][0];
+        for (int i = 0; i < notasTurma.length; i++){
+            for (int j = 0; j < notasTurma[0].length; j++){
+                if (notasTurma[i][j] < menor) menor = notasTurma[i][j];
+            }
+        }
+        return menor;
+    }
+
+    // Exercício 5g)
+    public int[] notasAcima(int[][] notasTurma, int nota){
+        int[] notas = new int[notasTurma.length * notasTurma[0].length];
+        int tamanho = 0;
+
+        for (int i = 0; i < notasTurma.length; i++){
+            for (int j = 0; j < notasTurma[0].length; j++){
+                if (notasTurma[i][j] > nota) notas[tamanho++] = notasTurma[i][j];
+            }
+        }
+
+        return Arrays.copyOfRange(notas,0, tamanho);
+    }
+
+    // Exercício 5h)
+    public String stringNotas(int[][] notasTurma){
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < notasTurma.length; i++){
+            sb.append("Aluno ").append(i+1).append(": ");
+            for (int j = 0; j < notasTurma[i].length; j++){
+                sb.append(notasTurma[i][j]).append(" ");
+            }
+            sb.append("\n");
+        }
+
+        return sb.toString();
+    }
+
+    // Exercício 5i)
+
+    public int indiceUCMaisAlta(int[][] notasTurma){
+        int maior = 0;
+        int indice = 0;
+        for (int j = 0; j < notasTurma[0].length; j++){
+            int media = mediaNotasUC(notasTurma, j);
+            if (media > maior) {
+                media = maior;
+                indice = j;
+            }
+        }
+        return indice;
+    }
+
+    /* Exercício 6*/
+
+    // Exercício 6a)
+    public void lerMatriz(int[][] matriz){
+        for (int i = 0; i < matriz.length; i++){
+            for (int j = 0; j < matriz[0].length; j++){
+                matriz[i][j] = 0;
+            }
+        }
+    }
+
+    // Exercício 6b)
+    public int[][] somaMatrizes(int[][] matriz1, int[][] matriz2){
+        int linhas = matriz1.length;
+        int colunas = matriz1[0].length;
+        int[][] resultado= new int[linhas][colunas];
+
+        for (int i = 0; i < linhas; i++){
+            for (int j = 0; j < colunas; j++){
+                resultado[i][j] = matriz1[i][j] + matriz2[i][j];
+            }
+        }
+
+        return resultado;
+    }
+
+    // Exercício 6c)
+
+    public boolean iguaisMatrizes(int[][] matriz1, int[][] matriz2){
+        if (matriz1.length != matriz2.length || matriz1[0].length != matriz2[0].length)
+            return false;
+
+        int linhas = matriz1.length;
+        int colunas = matriz1[0].length;
+
+        for (int i = 0; i < linhas; i++){
+            for (int j = 0; j < colunas; j++){
+                if(matriz1[i][j] != matriz2[i][j]) return false;
+            }
+        }
+
+        return true;
+    }
+
+    // Exercício 6d)
+
+    public int[][] matrizOposta(int[][] matriz){
+        int linhas = matriz.length;
+        int colunas = matriz[0].length;
+        int[][] resultado= new int[linhas][colunas];
+
+        for (int i = 0; i < linhas; i++){
+            for (int j = 0; j < colunas; j++){
+                resultado[i][j] = -matriz[i][j];
+            }
+        }
+
+        return resultado;
+    }
 
     /* Exercício 7*/
     public int[] geracaoNumeros(){

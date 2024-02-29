@@ -131,12 +131,9 @@ public class TestePrograma {
                         System.out.println(k);
                     }
                 }
-
+                break;
             }
         }
-
-
-
 
     }
 }
