@@ -1,5 +1,7 @@
+package main;
+
 /**
- * Classe que implementa um Cicrulo num plano 2D.
+ * Classe que implementa um Circulo num plano 2D.
  * As coordenadas e o raio do Circlo são doubles.
  *
  * @author Mariana

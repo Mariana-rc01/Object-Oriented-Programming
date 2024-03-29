@@ -65,6 +65,10 @@ public class Telemovel {
         this.apps = t.getApps();
     }
 
+    public Telemovel clone(){
+        return new Telemovel(this);
+    }
+
     public String getMarca() {
         return marca;
     }
@@ -186,14 +190,14 @@ public class Telemovel {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         Telemovel telemovel = (Telemovel) o;
-        return aTotal == telemovel.aTotal && aApp == telemovel.aApp
-                && nBytes == telemovel.nBytes && nFotos == telemovel.nFotos
-                && nApps == telemovel.nApps && Objects.equals(marca, telemovel.marca)
-                && Objects.equals(modelo, telemovel.modelo) &&
-                Objects.equals(display, telemovel.display) &&
-                Arrays.equals(msgs, telemovel.msgs) && Arrays.equals(apps, telemovel.apps);
+        return this.aTotal == telemovel.getaTotal() && this.aApp == telemovel.getaApp()
+                && this.nBytes == telemovel.getnBytes() && this.nFotos == telemovel.getnFotos()
+                && this.nApps == telemovel.getnApps() && Objects.equals(this.marca, telemovel.getMarca())
+                && Objects.equals(this.modelo, telemovel.getModelo()) &&
+                Objects.equals(this.display, telemovel.getDisplay()) &&
+                Arrays.equals(this.msgs, telemovel.getMsgs()) && Arrays.equals(this.apps, telemovel.getApps());
     }
 
     public boolean existeEspaco(int numeroBytes){

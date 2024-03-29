@@ -1,4 +1,4 @@
-import java.util.Objects;
+package main;
 
 public class Lampada {
     private boolean ligada;
@@ -29,6 +29,10 @@ public class Lampada {
         this.consumoPorMilissegundo = l.getConsumoPorMilissegundo();
         this.ultimoResetTempo = l.getUltimoResetTempo();
         this.consumoTotal = l.getConsumoTotal();
+    }
+
+    public Lampada clone(){
+        return new Lampada(this);
     }
 
     public boolean getLigada() {
@@ -83,9 +87,12 @@ public class Lampada {
 
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
         Lampada lampada = (Lampada) o;
-        return ligada == lampada.ligada && modoEco == lampada.modoEco && Double.compare(consumoPorMilissegundo, lampada.consumoPorMilissegundo) == 0 && ultimoResetTempo == lampada.ultimoResetTempo && Double.compare(consumoTotal, lampada.consumoTotal) == 0;
+        return this.ligada == lampada.getLigada() && this.modoEco == lampada.getModoEco() &&
+                Double.compare(this.consumoPorMilissegundo, lampada.getConsumoPorMilissegundo()) == 0
+                && this.ultimoResetTempo == lampada.getUltimoResetTempo() &&
+                Double.compare(this.consumoTotal, lampada.getConsumoTotal()) == 0;
     }
 
     public void lampON(){

@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/home/mariana/Downloads/junit-platform-console-standalone-1.7.0-M1.jar"
+    ],
+    "java.debug.settings.onBuildFailureProceed": true
+}

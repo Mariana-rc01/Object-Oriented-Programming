@@ -1,0 +1,11 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/home/mariana/Downloads/junit-platform-console-standalone-1.7.0-M1.jar"
+    ],
+    "cSpell.words": [
+        "Ponto"
+    ]
+}
