@@ -98,7 +98,7 @@ public class CasaInteligente {
             }
         }
         return lM;*/
-        return this.lampadas.stream().sorted((l1,l2) -> l2.compareTo(l1)).findFirst().get().clone();
+        return this.lampadas.stream().sorted((l1,l2) -> Double.compare(l2.getConsumoTotal(),l1.getConsumoTotal())).findFirst().get().clone();
     }
 
     
