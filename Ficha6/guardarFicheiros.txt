@@ -1,0 +1,49 @@
+public class Aluno_TE extends Aluno implements Serializable{
+
+//Para guardar o estado
+
+// Gravar em Ficheiro:
+public void gravaEmTexto(String nomeFicheiro) throws FileNotFoundException{
+    PrintWriter pw = new PrintWriter(nomeFicheiro);
+    pw.println(this.toString());
+    pw.flush();
+    pw.close();
+}
+
+// Gravar em binário:
+
+public void gravarEmBinario(String nomeFicheiro) throws FileNotFoundException, IOException{
+    FileOutputStream fos = new FileOutputStream(nomeFicheiro);
+    ObjectOutputStream oos = new ObjectOutputStream(fos);
+    oos.writeObject(this);
+    oos.flush();
+    oos.close();
+}
+
+// para ler em binário, Aluno_TE p.e.
+public Aluno_TE lerEmBinario(String nomeFicheiro) throws FileNotFoundException, IOException, ClassNotFoundException{
+    FileInputStream fis = new FileInputStream(nomeFicheiro);
+    ObjectInputStream ois = new ObjectInputStream(fis);
+    Aluno_TE a = (Aluno_TE) ois.readObject();
+    ois.close();
+    return a;
+}
+
+}
+
+Indo à app.java
+
+public class App{
+    public void main(String[] args){
+        Aluno_TE a = new Aluno_TE();
+        try{
+            a.gravarEmBinario("binario");
+        }
+        catch(FileNotFoundException e){
+            System.out.println("Ficheiro não encontrado");
+        }
+        catch(IOException e){
+            System.out.println("Erro IO");
+        }
+    }
+}
