@@ -107,13 +107,12 @@ public class CasaInteligente {
     }
 
     public void reset(){
-        // faz melhor com streams
+        this.lampadas.forEach(l -> l.resetConsumo());
     }
 
-    /*public Set<Lampada> podiumEconomia(){
-
+    public Set<Lampada> podiumEconomia(){
+        return this.lampadas.stream().map(Lampada::clone).sorted((l1,l2) -> l1.compareTo(l2)).limit(3).collect(Collectors.toSet());
     }
-    */
 
     public CasaInteligente clone(){
         return new CasaInteligente(this);
